@@ -1,0 +1,224 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>{{ title }}</title>
+        <link rel="shortcut icon" type="image/png" href="{% static 'images/title_png_eAZ_icon.ico'%}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+
+  	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="{% static 'css/flexslider.css' %}">
+
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	<!-- Modernizr JS -->
+	<script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="{% static 'js/respond.min.js' %}"></script>
+	<![endif]-->
+    <script src="https://kit.fontawesome.com/ebd4c61e36.js" crossorigin="anonymous"></script>
+	</head>
+	<body>
+
+	<div class="colorlib-loader"></div>
+
+	<div id="page">
+		<nav class="colorlib-nav" role="navigation">
+			<div class="upper-menu">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-4">
+							<p>{{ greeting }}</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="top-menu">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-2">
+							<div id="colorlib-logo"><a href="{% url 'index' %}">{{ name }}</a></div>
+						</div>
+						<div class="col-md-10 text-right menu-1">
+							<ul>
+								<li class="has-dropdown"><a href="{% url 'index' %}">Главная</a></li>
+                                <li><a href="{% url 'mediacontent:news' %}">Новости</a></li>
+								<li class="has-dropdown">
+									<a href="courses.html">Образование</a>
+									<ul class="dropdown">
+										<li><a href="courses-single.html">Направления подготовки</a></li>
+										<li><a href="#">Дополнительное образование</a></li>
+                                        <li><a href="{% url 'mediacontent:sport' %}">Спорт</a></li>
+										<li><a href="{% url 'mediacontent:clubs' %}">Клубы</a></li>
+										<li><a href="#">Абитуриенту</a></li>
+									</ul>
+								</li>
+								<li><a href="{% url 'mediacontent:aboutcenter' %}">О центре</a></li>
+								<li><a href="{% url 'mediacontent:aboutcity' %}">О Когалыме</a></li>
+								<li><a href="{% url 'mediacontent:contact' %}">Контакты</a></li>
+								<li class="btn-cta"><a href="#"><span>Поддержать сайт</span></a></li>
+                                {% if user.is_authenticated %}
+                                    <li class="has-dropdown">
+                                        <a href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-user-circle"></i>
+                                        </a>
+                                        <ul class="dropdown">
+                                        <li><a class="dropdown-item" href="{% url 'users:profile' user.id %}">Профиль</a></li>
+                                    {% if user.is_superuser or user.is_staff %}
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'admin:index' %}">Админ-панель</a>
+                                        </li>
+                                        </li>
+                                    {% endif %}
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'users:logout' %}">
+                                        Выйти
+                                        </a>
+                                    </li>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <li class="active"><a href="{% url 'users:login' %}">Войти<i class="fas fa-sign-in-alt"></i></a></li>
+                                    </li>
+                                {% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+
+    {% block content %}
+    {% endblock %}
+
+        <footer id="colorlib-footer">
+			<div class="container">
+				<div class="row row-pb-md">
+					<div class="col-md-3 colorlib-widget">
+						<h4>О сайте</h4>
+						<p>Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
+					</div>
+					<div class="col-md-3 colorlib-widget">
+						<h4>Быстрый переход</h4>
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a href="{% url 'mediacontent:aboutcenter' %}"><i class="icon-check"></i> Об образовательном центре</a></li>
+								<li><a href="#"><i class="icon-check"></i> Testimonials</a></li>
+								<li><a href="#"><i class="icon-check"></i> Courses</a></li>
+								<li><a href="{% url 'mediacontent:aboutcity' %}"><i class="icon-check"></i> О городе Когалым</a></li>
+								<li><a href="{% url 'mediacontent:news' %}"><i class="icon-check"></i> Новости</a></li>
+								<li><a href="{% url 'mediacontent:contact' %}"><i class="icon-check"></i> Контакты</a></li>
+							</ul>
+						</p>
+					</div>
+
+					<div class="col-md-3 colorlib-widget">
+						<h4>Полезные ссылки</h4>
+						<div class="f-blog">
+							<a href="blog.html" class="blog-img" style="background-image: url(images/blog-1.jpg);">
+							</a>
+							<div class="desc">
+								<h2><a href="blog.html">Creating Mobile Apps</a></h2>
+								<p class="admin"><span>18 April 2018</span></p>
+							</div>
+						</div>
+						<div class="f-blog">
+							<a href="blog.html" class="blog-img" style="background-image: url(images/blog-2.jpg);">
+							</a>
+							<div class="desc">
+								<h2><a href="blog.html">Creating Mobile Apps</a></h2>
+								<p class="admin"><span>18 April 2018</span></p>
+							</div>
+						</div>
+						<div class="f-blog">
+							<a href="blog.html" class="blog-img" style="background-image: url(images/blog-3.jpg);">
+							</a>
+							<div class="desc">
+								<h2><a href="blog.html">Creating Mobile Apps</a></h2>
+								<p class="admin"><span>18 April 2018</span></p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3 colorlib-widget">
+						<h4>Контактная информация</h4>
+						<ul class="colorlib-footer-links">
+							<li>628482, Ханты-Мансийский автономный округ - Югра, г. Когалым, ул. Береговая, д. 100</li>
+							<li><a href="#"><i class="icon-phone"></i> 8(342)2-198-561</a></li>
+							<li><a href="mailto:mdv@pstu.ru"><i class="icon-envelope"></i> mdv@pstu.ru</a></li>
+{#							<li><a href="http://luxehotel.com"><i class="icon-location4"></i> yourwebsite.com</a></li>#}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="copy">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
+	</div>
+
+	<!-- jQuery -->
+	<script src="{% static 'js/jquery.min.js'%}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'js/jquery.easing.1.3.js'%}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'js/bootstrap.min.js'%}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'js/jquery.waypoints.min.js'%}"></script>
+	<!-- Stellar Parallax -->
+	<script src="{% static 'js/jquery.stellar.min.js'%}"></script>
+	<!-- Flexslider -->
+	<script src="{% static 'js/jquery.flexslider-min.js'%}"></script>
+	<!-- Owl carousel -->
+	<script src="{% static 'js/owl.carousel.min.js'%}"></script>
+	<!-- Magnific Popup -->
+	<script src="{% static 'js/jquery.magnific-popup.min.js'%}"></script>
+	<script src="{% static 'js/magnific-popup-options.js'%}"></script>
+	<!-- Counters -->
+	<script src="{% static 'js/jquery.countTo.js'%}"></script>
+	<!-- Main -->
+	<script src="{% static 'js/main.js'%}"></script>
+
+	</body>
+</html>

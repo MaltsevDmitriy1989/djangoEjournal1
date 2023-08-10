@@ -1,0 +1,393 @@
+{% extends 'mediacontent/base.html' %}
+{% load static %}
+
+{% block content %}
+		<aside id="colorlib-hero">
+			<div class="flexslider">
+				<ul class="slides">
+			   	<li style="background-image: url({% static 'images/img_kog_1.jpg'%});">
+			   		<div class="overlay"></div>
+			   		<div class="container-fluid">
+			   			<div class="row">
+				   			<div class="col-md-8 col-sm-12 col-md-offset-2 slider-text">
+				   				<div class="slider-text-inner text-center">
+				   					<h1>
+                                        Новаторская модель инженерного образования в нефтегазовой отрасли
+                                    </h1>
+				   				</div>
+				   			</div>
+				   		</div>
+			   		</div>
+			   	</li>
+			   	<li style="background-image: url({% static 'images/img_kog_2.jpg'%});">
+			   		<div class="overlay"></div>
+			   		<div class="container-fluid">
+			   			<div class="row">
+				   			<div class="col-md-8 col-sm-12 col-md-offset-2 slider-text">
+				   				<div class="slider-text-inner text-center">
+				   					<h1>
+                                        Выполнение реальных проектов в процессе обучения
+                                    </h1>
+				   				</div>
+				   			</div>
+				   		</div>
+			   		</div>
+			   	</li>
+			   	<li style="background-image: url({% static 'images/img_kog_3.jpeg'%});">
+			   		<div class="overlay"></div>
+			   		<div class="container-fluid">
+			   			<div class="row">
+				   			<div class="col-md-8 col-sm-12 col-md-offset-2 slider-text">
+				   				<div class="slider-text-inner text-center">
+				   					<h1>
+                                        Сетевое взаимодействие с ведущими российскими университетами
+                                    </h1>
+				   				</div>
+				   			</div>
+				   		</div>
+			   		</div>
+			   	</li>
+			   	<li style="background-image: url({% static 'images/img_kog_4.jpeg'%});">
+			   		<div class="overlay"></div>
+			   		<div class="container-fluid">
+			   			<div class="row">
+				   			<div class="col-md-8 col-sm-12 col-md-offset-2 slider-text">
+				   				<div class="slider-text-inner text-center">
+				   					<h1>
+                                        Подготовка команд высококлассных инженеров и управленцев
+                                    </h1>
+				   				</div>
+				   			</div>
+				   		</div>
+			   		</div>
+			   	</li>	
+			  	</ul>
+		  	</div>
+		</aside>
+		
+		<div id="colorlib-intro">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 intro-wrap">
+						<div class="intro-flex">
+							<div class="one-third color-1 animate-box">
+								<span class="icon"><i class="fa-solid fa-basketball"></i></span>
+								<div class="desc">
+									<h3>Выбери вид спорта</h3>
+									<p><a href="{% url 'mediacontent:sport' %}" class="view-more">Записаться в команду</a></p>
+								</div>
+							</div>
+							<div class="one-third color-2 animate-box">
+								<span class="icon"><i class="fa-regular fa-comments"></i></span>
+								<div class="desc">
+									<h3>Найди единомышленников</h3>
+									<p><a href="{% url 'mediacontent:clubs' %}" class="view-more">Клубы</a></p>
+								</div>
+							</div>
+							<div class="one-third color-3 animate-box">
+								<div class="desc2">
+									<h3>Получи дополнительное образование бесплатно</h3>
+									<p><a href="#" class="view-more">Выбрать ДПО</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="about-desc animate-box text-center">
+							<h2>Добро пожаловать в Образовательный центр города Когалым!</h2>
+							<p>Центр создан в рамках соглашения между Министерством науки и высшего образования Российской Федерации, Правительствами Ханты-Мансийского автономного округа – Югры и Пермского края и ПАО «ЛУКОЙЛ». Цель создания образовательного центра - подготовка инженерных кадров для нефтегазовой отрасли Российской Федерации</p>
+							<div class="fancy-collapse-panel">
+	                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	                     <div class="panel panel-default">
+	                         <div class="panel-heading" role="tab" id="headingOne">
+	                             <h4 class="panel-title">
+	                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Направления подготовки
+	                                 </a>
+	                             </h4>
+	                         </div>
+	                         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+	                             <div class="panel-body">
+	                                 <div class="row">
+									      		<div class="col-md-6">
+									      			<p>Бакалавриат <br>
+                                                    21.03.01 Нефтегазовое дело </p>
+									      		</div>
+									      		<div class="col-md-6">
+									      			<p>Специалитет
+                                                        <br>21.05.02 Прикладная геология<br>
+                                                        21.05.06 Нефтегазовые техника и технологии<br></p>
+									      		</div>
+									      	</div>
+	                             </div>
+	                         </div>
+	                     </div>
+	                     <div class="panel panel-default">
+	                         <div class="panel-heading" role="tab" id="headingTwo">
+	                             <h4 class="panel-title">
+	                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Набор
+	                                 </a>
+	                             </h4>
+	                         </div>
+	                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+	                             <div class="panel-body text-left">
+	                                 <p>В 2023 году количество бюджетных мест составляет 135: </p>
+												<ul>
+													<li>25 мест в бакалавриате</li>
+													<li>110 мест в специалитете</li>
+												</ul>
+	                             </div>
+	                         </div>
+	                     </div>
+	                     <div class="panel panel-default">
+	                         <div class="panel-heading" role="tab" id="headingThree">
+	                             <h4 class="panel-title">
+	                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Вступительные испытания
+	                                 </a>
+	                             </h4>
+	                         </div>
+	                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	                             <div class="panel-body text-left">
+	                                 <ul>
+											<li>1. Математика (профильный уровень)</li>
+											<li>2. Физика или Информатика и ИКТ или Химия или География</li>
+                                            <li>3. Русский язык</li>
+                                     </ul>
+	                             </div>
+	                         </div>
+	                     </div>
+	                  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<div id="colorlib-services">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 text-center animate-box">
+						<div class="services">
+							<span class="icon">
+								<i class="flaticon-books"></i>
+							</span>
+							<div class="desc">
+								<h3>Структура обучения</h3>
+								<p>Общая инженерная подготовка
+                                <br>Управление
+                                <br>Технологии будущего
+                                <br>Профильная подготовка
+                                </p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 text-center animate-box">
+						<div class="services">
+							<span class="icon">
+								<i class="flaticon-professor"></i>
+							</span>
+							<div class="desc">
+								<h3>Преподавательский состав</h3>
+								<p>Доктора наук – 12
+                                    <br>Кандидаты наук – 38
+                                    <br>Преподаватели-практики <br> (НК «Лукойл») – 10
+                                </p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 text-center animate-box">
+						<div class="services">
+							<span class="icon">
+								<i class="fa-solid fa-oil-well"></i>
+							</span>
+							<div class="desc">
+								<h3>Практика и трудоустройство</h3>
+								<p>Практика организована в подразделениях НК «Лукойл»
+                                    <br>Большинство студентов трудоустраиваются еще до завершения обучения
+                                </p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 text-center animate-box">
+						<div class="services">
+							<span class="icon">
+								<i class="flaticon-diploma"></i>
+							</span>
+							<div class="desc">
+								<h3>Дополнительное образование</h3>
+								<p> иностранные языки;
+                                    <br>спецкурсы по математике;
+                                    <br>искусственный интеллект;
+                                    <br>цифровые двойники;
+                                    <br>стратегический менеджмент;
+                                    <br>проектная командная работа</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="colorlib-classes colorlib-light-grey">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
+						<h2>Профили и специализации</h2>
+						<p>Реализуемые в настоящее время</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 animate-box">
+						<div class="classes text-center">
+							<div class="classes-img" style="background-image: url({% static 'images/img_ngd.jpg' %});">
+								<span class="price text-center"><small>4 года</small></span>
+							</div>
+							<div class="desc">
+								<h3><a href="#">Нефтегазовое дело<br></a></h3>
+
+								<p><br>Форма обучения по программе: очная
+                                <br>Квалификация "Бакалавр"
+								<p><a href="#" class="btn-learn">Подробнее <i class="icon-arrow-right3"></i></a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 animate-box">
+						<div class="classes text-center">
+							<div class="classes-img" style="background-image: url({% static 'images/img_geolog.jpg' %});">
+								<span class="price text-center"><small>5 лет</small></span>
+							</div>
+							<div class="desc">
+								<h3><a href="#">Геология месторождений нефти и газа</a></h3>
+								<p>Форма обучения по программе: очная
+                                <br>Квалификация "Горный инженер-геолог"
+								<p><a href="#" class="btn-learn">Подробнее <i class="icon-arrow-right3"></i></a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 animate-box">
+						<div class="classes text-center">
+							<div class="classes-img" style="background-image: url({% static 'images/img_ngt.jpg' %});">
+								<span class="price text-center"><small>5,5 лет</small></span>
+							</div>
+							<div class="desc">
+								<h3><a href="#">Нефтегазовые техника и технологии</a></h3>
+								<p>Форма обучения по программе: очная
+                                <br>Квалификация "Горный инженер (специалист)"
+								<p><a href="#" class="btn-learn">Подробнее <i class="icon-arrow-right3"></i></a></p>
+							</div>
+						</div>
+					</div>
+                    <div class="col-md-4 animate-box">
+						<div class="classes text-center">
+							<div class="classes-img" style="background-image: url({% static 'images/img_bngs.jpeg' %});">
+								<span class="price text-center"><small>5,5 лет</small></span>
+							</div>
+							<div class="desc">
+								<h3><a href="#">Технология бурения нефтяных и газовых скважин</a></h3>
+								<p>Форма обучения по программе: очная
+                                <br>Квалификация "Горный инженер (специалист)"
+								<p><a href="#" class="btn-learn">Подробнее <i class="icon-arrow-right3"></i></a></p>
+							</div>
+						</div>
+					</div>
+                    <div class="col-md-4 animate-box">
+						<div class="classes text-center">
+							<div class="classes-img" style="background-image: url({% static 'images/img_rngm.jpg' %});">
+								<span class="price text-center"><small>5,5 лет</small></span>
+							</div>
+							<div class="desc">
+								<h3><a href="#">Разработка и эксплуатация нефтяных и газовых месторождений</a></h3>
+								<p>Форма обучения по программе: очная
+                                <br>Квалификация "Горный инженер (специалист)"
+								<p><a href="#" class="btn-learn">Подробнее <i class="icon-arrow-right3"></i></a></p>
+							</div>
+						</div>
+					</div>
+                    <div class="row">
+					    <div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
+                            <p>Реализация планируется в ближайшее время</p>
+					    </div>
+				    </div>
+					<div class="col-md-4 animate-box">
+						<div class="classes text-center">
+							<div class="classes-img" style="background-image: url({% static 'images/img_mon.jpg' %});">
+								<span class="price text-center"><small>5,5 лет</small></span>
+							</div>
+							<div class="desc">
+								<h3><a href="#">Машины и оборудование нефтяных и газовых промыслов</a></h3>
+								<p>Форма обучения по программе: очная
+                                <br>Квалификация "Горный инженер (специалист)"
+								<p><a href="#" class="btn-learn">Подробнее <i class="icon-arrow-right3"></i></a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 animate-box">
+						<div class="classes text-center">
+							<div class="classes-img" style="background-image: url({% static 'images/img_gnp.jpg' %});">
+								<span class="price text-center"><small>5,5 лет</small></span>
+							</div>
+							<div class="desc">
+								<h3><a href="#">Проектирование и эксплуатация нефтяных и газовых промыслов</a></h3>
+								<p>Форма обучения по программе: очная
+                                <br>Квалификация "Горный инженер (специалист)"
+								<p><a href="#" class="btn-learn">Подробнее <i class="icon-arrow-right3"></i></a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+
+		<div id="colorlib-testimony" class="testimony-img" style="background-image: url(images/img_bg_2.jpg);" data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
+						<h2>What Are The Students Says</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center">
+						<div class="row animate-box">
+							<div class="owl-carousel1">
+								<div class="item">
+									<div class="testimony-slide">
+										<div class="testimony-wrap">
+											<blockquote>
+												<span>Sophia Foster</span>
+												<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+											</blockquote>
+											<div class="figure-img" style="background-image: url(images/person1.jpg);"></div>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="testimony-slide">
+										<div class="testimony-wrap">
+											<blockquote>
+												<span>John Collins</span>
+												<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+											</blockquote>
+											<div class="figure-img" style="background-image: url(images/person2.jpg);"></div>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="testimony-slide">
+										<div class="testimony-wrap">
+											<blockquote>
+												<span>Adam Ross</span>
+												<p>Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+											</blockquote>
+											<div class="figure-img" style="background-image: url(images/person3.jpg);"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'mediacontent/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="colorlib-classes">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
+						<h2>Спортивные секции образовательного центра</h2>
+						<p align="justify" style="text-indent: 25px;">Мы - студенческий спортивный клуб "Когалымские оцелоты". У нас нет скучной физкультуры. Спортивные секции образовательного центра - это дружные команды единомышленников, соревнования, поддержка на трибунах, здоровый образ жизни! </p>
+                        <p align="justify" style="text-indent: 25px;">Студент образовательного центра, ты можешь выбрать баскетбол, волейбол, футбол, дзюдо, фитнес, йогу, шахматы, киберспорт или собрать команду и предложить свою спортивную секцию! </p>
+					    <h1>Уровни секций</h1>
+                        <p align="justify" style="text-indent: 25px;">Мы знаем, что у каждого из вас разная подготовка и физическая форма, поэтому секции делятся на две категории: по выбору (свободное посещение) и спортивные.</p>
+                        <p align="justify" style="text-indent: 25px;">Секции по выбору (свободное посещение) подойдут для начинающих, здесь нет соревнований. Занимайся с комфортной нагрузкой, пробуй разные виды спорта.</p>
+                        <p align="justify" style="text-indent: 25px;">Спортивные секции подойдут тем, кто хочет получить или совершенствовать спортивные навыки.
+                            Тренировки спортивных секций нельзя пропускать: в случае пропусков тренер может отписать тебя от секции, чтобы дать возможность заниматься тем, кто может уделять тренировкам достаточно времени.
+                            Спортивные секции делятся на базовый уровень, продвинутый уровень и команды.</p>
+                    </div>
+				</div>
+                <div class="row">
+					<div class="col-md-4 animate-box">
+                        <br>
+                        <h1 align="center">Базовый уровень</h1>
+                        <br>
+						<p align="justify" style="text-indent: 25px;">Научись новому для тебя виду спорта, занимайся с тренером и командой, получай базовые спортивные навыки!</p>
+					</div>
+					<div class="col-md-4 animate-box">
+						<h1 align="center">Продвинутый уровень</h1>
+                        <p align="justify" style="text-indent: 25px";>Совершенствуй свои спортивные навыки, попади в резерв спортивной команды образовательного центра и участвуй в соревнованиях!</p>
+					</div>
+					<div class="col-md-4 animate-box">
+                        <h1 align="center">Спортивные команды</h1>
+						<p align="justify" style="text-indent: 25px";>Докажи, что ты лучший и пройди отбор в команду! Наша спортивная элита участвует в турнирах и всероссийских соревнованиях.</p>
+					</div>
+				</div>
+				<div class="row text-center">
+                    <h2>Виды спортивных секций</h2>
+                    {% for sport in sports %}
+					<div class="col-md-4 animate-box">
+						<div class="classes">
+							<div class="classes-img" style="background-image: url({{sport.image.url}});">
+							</div>
+							<div class="desc">
+                                <h3><a>{{ sport.name }}</a></h3>
+                                <h3> Уровни: {{ sport.level }}</h3>
+								<p>{{ sport.description}}</p>
+								<p><a href="#{{ sport.name }}" class="btn-learn">Подробнее <i class="icon-arrow-down"></i></a></p>
+							</div>
+						</div>
+					</div>
+                    {% endfor %}
+				</div>
+                <div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
+						<h2>Предварительная запись</h2>
+                    {% for sport in sports %}
+						<p align="justify" style="text-indent: 25px;"><a name="{{ sport.name }}">Запись на {{ sport.name }}</a></p>
+                        {% if user.is_authenticated %}
+                            <form action="{% url 'users:profile' %}" method="post">
+                                {% csrf_token %}
+                                <p><a class="btn-learn" href="{% url 'sport:basket_add' sport.id %}">Записаться <i class="icon-pen"></i></a></p>
+                        {% else %}
+                                <p><a class="btn-learn" href="{% url 'users:login' %}">Записаться <i class="icon-pen"></i></a></p>
+                        {% endif %}
+                    {% endfor %}
+                            </form>
+                </div>
+            </div>
+			</div>
+		</div>
+{% endblock %}
