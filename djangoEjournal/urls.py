@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 from mediacontent.views import (AboutcenterView, AboutcityView, ClubsView,
-                                ContactView, IndexView, NewsView, SportView)
+                                ContactView, IndexView, NewsView, sport)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,6 +17,7 @@ urlpatterns = [
     # path('mediacontent/', AboutcenterView.as_view(), name='aboutcenter'),
     # path('mediacontent/', ContactView.as_view(), name='contact'),
     path('users/', include('users.urls', namespace='users')),
+    path('quest/', include('quest.urls', namespace='quest')),
 
 ]
 

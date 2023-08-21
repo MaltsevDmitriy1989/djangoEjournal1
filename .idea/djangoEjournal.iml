@@ -25,6 +25,7 @@
       <list>
         <option value="$MODULE_DIR$/templates" />
         <option value="$MODULE_DIR$/mediacontent/templates" />
+        <option value="$MODULE_DIR$/quest/templates" />
       </list>
     </option>
   </component>

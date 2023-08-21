@@ -70,19 +70,19 @@
 								<li class="has-dropdown"><a href="{% url 'index' %}">Главная</a></li>
                                 <li><a href="{% url 'mediacontent:news' %}">Новости</a></li>
 								<li class="has-dropdown">
-									<a href="courses.html">Образование</a>
+									<a href="{% url 'mediacontent:education' %}">Образование</a>
 									<ul class="dropdown">
-										<li><a href="courses-single.html">Направления подготовки</a></li>
+										<li><a href="#">Направления подготовки</a></li>
 										<li><a href="#">Дополнительное образование</a></li>
                                         <li><a href="{% url 'mediacontent:sport' %}">Спорт</a></li>
 										<li><a href="{% url 'mediacontent:clubs' %}">Клубы</a></li>
-										<li><a href="#">Абитуриенту</a></li>
+										<li><a href="{% url 'quest:kagalym' %}">Абитуриенту</a></li>
 									</ul>
 								</li>
 								<li><a href="{% url 'mediacontent:aboutcenter' %}">О центре</a></li>
 								<li><a href="{% url 'mediacontent:aboutcity' %}">О Когалыме</a></li>
 								<li><a href="{% url 'mediacontent:contact' %}">Контакты</a></li>
-								<li class="btn-cta"><a href="#"><span>Поддержать сайт</span></a></li>
+								<li class="btn-cta"><a href="{% url 'quest:student' %}"><span>Тестирование</span></a></li>
                                 {% if user.is_authenticated %}
                                     <li class="has-dropdown">
                                         <a href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -93,6 +93,7 @@
                                     {% if user.is_superuser or user.is_staff %}
                                         <li>
                                             <a class="dropdown-item" href="{% url 'admin:index' %}">Админ-панель</a>
+                                            <li><a href="{% url 'quest:admin_code' %}">Админ-тест</a></li>
                                         </li>
                                         </li>
                                     {% endif %}

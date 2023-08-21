@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-
+from mediacontent.models import Sports, Basket
 from common.views import TitleMixin
-
+from users.forms import UserProfileForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 class IndexView(TitleMixin, TemplateView):
@@ -17,11 +18,24 @@ class NewsView(TitleMixin, TemplateView):
     greeting = 'Электронный журнал Оцелот'
     name = 'Образовательный центр города Когалым'
 
-class SportView(TitleMixin, TemplateView):
-    template_name = 'mediacontent/sports.html'
-    title = 'Спорт'
-    greeting = 'Электронный журнал Оцелот'
-    name = 'Образовательный центр города Когалым'
+def sport(request):
+    sports = Sports.objects.all()
+    context = {
+        'title': 'Спорт',
+        'greeting': 'Электронный журнал Оцелот',
+        'name': 'Образовательный центр города Когалым',
+        'sports': sports,
+    }
+    return render(request, 'mediacontent/sports.html', context)
+
+@login_required
+def basket_add(request, sport_id):
+    sport = Sports.objects.get(id=sport_id).name
+    user = request.user
+    default_data = {'first_name': user.first_name, 'last_name': user.last_name, 'username': user.username,
+                    'email': user.email, 'sport': sport}
+    form = UserProfileForm(default_data)
+    return render(request, 'users/profile.html', {'form': form, 'user': user})
 
 class ClubsView(TitleMixin, TemplateView):
     template_name = 'mediacontent/clubs.html'
@@ -44,5 +58,11 @@ class AboutcityView(TitleMixin, TemplateView):
 class ContactView(TitleMixin, TemplateView):
     template_name = 'mediacontent/contact.html'
     title = 'Контакты'
+    greeting = 'Электронный журнал Оцелот'
+    name = 'Образовательный центр города Когалым'
+
+class EducationView(TitleMixin, TemplateView):
+    template_name = 'mediacontent/courses.html'
+    title = 'Образование'
     greeting = 'Электронный журнал Оцелот'
     name = 'Образовательный центр города Когалым'
