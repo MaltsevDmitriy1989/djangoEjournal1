@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ru">
+<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+<head>
+    <title>anketa_аdmin</title>
+</head>
+<body>
+<h1>{{fam}}  {{imya}}  {{otch}}</h1>
+<h1>Преподаватель</h1>
+<form action="" method="POST">
+{% csrf_token %}
+<BR>	
+<h1>Выбор действия</h1>	
+<table border="0">
+  <tr>
+    <td width = "25%"><INPUT TYPE=SUBMIT NAME=god VALUE="Выбор дисциплины"></td>			  
+    <td width = "25%"><INPUT TYPE=SUBMIT NAME=fak VALUE="База тестовых заданий"></td>			
+    <td width = "25%"><INPUT TYPE=SUBMIT NAME=st VALUE="Управление тестированием студентов"></td>
+    <td width = "25%"><INPUT TYPE=SUBMIT NAME=pt VALUE="Управление еще чем-то"></td>	
+  </tr>
+{% comment %}
+  {% for i in prepod %}
+  <tr>
+    <td>{{ i.prepod_num }}</td>
+    <td>{{ i.fam }}</td>
+    <td>{{ i.imya }}</td>
+    <td>{{ i.otch }}</td>
+  </tr>
+  {% endfor %}
+{% endcomment %}  
+</table>
+<BR>	
+<BR>
+<BR>
+<p><INPUT TYPE=SUBMIT NAME=output VALUE="Выйти"></p>		
+</form>
+</body>
+</html>

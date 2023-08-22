@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ru">
+<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+
+<head>
+    <title>anketa_аdmin_fak</title>
+    <script type="text/javascript" src="/media/js/jquery.js"></script>			
+</head>
+<body>
+<script type="text/javascript">
+function destroy() {
+        if (confirm("Вы действительно хотите удалить план?"))
+        {
+
+                return true;
+        }
+
+        return false;
+}
+</script>
+<h1>{{fam}}  {{imya}}  {{otch}}</h1>
+<h1>Администратор</h1>
+<form action="" method="POST">
+{% csrf_token %}
+<BR>	
+<h1>План тестирования</h1>	
+<table border="2">
+  <tr>
+    <td>Номер плана</td>
+    <td>Номер БТЗ</td>
+    <td>Группа</td>
+    <td>Предмет</td>
+    <td>Номер группы</td>
+    <td>Номер факультета</td>
+    <td>В процессе</td>
+    <td>Завершен</td>
+    <td>ID препода</td>
+    <td>ID тестолога</td>
+    <td>Дата</td>
+    <td>Время</td>
+    <td>Изменить</td>	
+    <td>Удалить</td>		
+  </tr>
+{% comment %}
+{% endcomment %}  
+  {% for i in plan %}
+  <tr>
+    <td>{{ i.plan_num }}</td>
+    <td>{{ i.baza_num }}</td>
+    <td>{{ i.group_nam }}</td>
+    <td>{{ i.pred_nam }}</td>
+    <td>{{ i.group_num }}</td>
+    <td>{{ i.fak_num }}</td>
+    <td>{{ i.processed }}</td>
+    <td>{{ i.executed }}</td>
+    <td>{{ i.teacher_num }}</td>
+    <td>{{ i.tester_num }}</td>
+    <td>{{ i.test_date }}</td>
+    <td>{{ i.test_time }}</td>
+    <td align="Center"><INPUT TYPE=SUBMIT NAME="edit_plan" VALUE="{{ i.plan_num }}"></td>						
+    <td align="Center"><INPUT TYPE=SUBMIT NAME="del_plan" VALUE="{{ i.plan_num }}" onclick="return destroy();"></td>							
+  </tr>
+  {% endfor %}
+</table>
+<BR>	
+<p><INPUT TYPE=SUBMIT NAME=insert_plan VALUE="Добавить план"></p>	
+<BR>
+<BR>
+<p><INPUT TYPE=SUBMIT NAME=output VALUE="Выйти"></p>		
+</form>
+</body>
+</html>

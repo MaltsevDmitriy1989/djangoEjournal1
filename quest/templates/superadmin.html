@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ru">
+<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+<head>
+    <title>anketa_аdmin</title>
+    <script type="text/javascript" src="/media/js/jquery.js"></script>		
+</head>
+<body>
+<script type="text/javascript">
+function destroy() {
+        if (confirm("Вы действительно хотите удалить администратора?"))
+        {
+
+                return true;
+        }
+
+        return false;
+}
+</script>
+<h1>{{fam}}  {{imya}}  {{otch}}</h1>
+<form action="" method="POST">
+{% csrf_token %}
+<BR>	
+<h1>Суперадминистратор</h1>	
+<table border="2">
+    <tr>
+		<td>Номер п.п.</td>			
+		<td>Фамилия</td>
+		<td>Имя</td>
+		<td>Отчество</td>
+		<td>Изменить</td>
+	</tr>
+	{% for i in sadmin %}
+    <tr>
+	    <td>{{ i.admin_num }}</td>
+		<td>{{ i.fam }}</td>
+		<td>{{ i.imya }}</td>
+		<td>{{ i.otch }}</td>
+		<td align="Center"><INPUT TYPE=SUBMIT NAME="edit_sadmin" VALUE={{ i.admin_num }}></td>					
+	</tr>
+	{% endfor %}
+</table>
+{% comment %}			
+{% endcomment %}	
+<BR>	
+<h1>Администраторы</h1>	
+<table border="2">
+    <tr>
+		<td>Номер п.п.</td>			
+		<td>Фамилия</td>
+		<td>Имя</td>
+		<td>Отчество</td>
+		<td>Изменить</td>
+		<td>Удалить</td>		
+	</tr>
+	{% for i in admin %}
+    <tr>
+	    <td>{{ i.admin_num }}</td>
+		<td>{{ i.fam }}</td>
+		<td>{{ i.imya }}</td>
+		<td>{{ i.otch }}</td>
+		<td align="Center"><INPUT TYPE=SUBMIT NAME="edit_admin" VALUE="{{ i.admin_num }}"></td>					
+		<td align="Center"><INPUT TYPE=SUBMIT NAME="del_admin" VALUE="{{ i.admin_num }}" onclick="return destroy();"></td>							
+	</tr>
+	{% endfor %}
+</table>
+<p><INPUT TYPE=SUBMIT NAME=insert VALUE="Добавить"></p>	
+<BR>	
+<BR>	
+<p><INPUT TYPE=SUBMIT NAME=output VALUE="Выйти"></p>		
+{% comment %}
+{% endcomment %}	
+</form>
+</body>
+</html>

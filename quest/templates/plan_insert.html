@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ru">
+<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+
+<head>
+    <title>anketa_fak_insert</title>
+</head>
+<body>
+<h1>Добавление нового плана</h1>
+<form action="" method="POST">
+{% csrf_token %}
+{% comment %}			
+    <p><INPUT TYPE=SUBMIT NAME=seache VALUE="Найти"></p>
+{% endcomment %}	
+    <h3>Заполните необходимые поля</h3>	
+  	<table border="2">
+		    <tr>
+				<td>Номер БТЗ</td>
+				<td>Номер группы</td>
+			</tr>		
+		    <tr>
+				<td><input type="text" name="baza_num" size="10"  style="font-size: 25px;" ></td>
+				<td><input type="text" name="group_num" size="10"  style="font-size: 25px;" ></td>
+			</tr>
+	</table>
+    <BR>	
+    <BR>
+    <p><INPUT TYPE=SUBMIT NAME=insert VALUE="Добавить"></p>	
+    <p><INPUT TYPE=SUBMIT NAME=output VALUE="Отменить"></p>		
+</form>
+</body>
+</html>

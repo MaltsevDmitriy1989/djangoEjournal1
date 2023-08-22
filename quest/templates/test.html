@@ -1,0 +1,897 @@
+{% extends 'mediacontent/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/testing.css' %}">
+
+<body>
+
+<h2>Вопрос №{{ quest_list.number }} </h2>
+
+<FORM ACTION="" METHOD=POST>
+{% csrf_token %}
+
+
+{% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+
+<ol>
+{% for q, q_a, q_b in quest_list.object_list %}
+  {{ q.quest_text|safe }}  <br><br>
+  
+  {% if q.quest_type == 1 %}
+    {% for i in q_a %}
+      {% if i.ans == 0 %}
+        <input type="radio" name="Radio" value="{{ i.answer_num }}">          {{ i.answer_text }}<br><br>
+	  {% else %}
+        <input type="radio" name="Radio" value="{{ i.answer_num }}" checked>  {{ i.answer_text }}<br><br>
+      {% endif %}  	  	
+    {% endfor %}	
+  {% endif %}
+  
+  {% if q.quest_type == 2 %}
+    {% for i in q_a %}
+      {% if i.ans == 0 %}
+        <input type="checkbox" name="Radio" value="{{ i.answer_num }}">          {{ i.answer_text }} <br><br>
+	  {% else %}
+        <input type="checkbox" name="Radio" value="{{ i.answer_num }}" checked>  {{ i.answer_text }} <br><br>
+      {% endif %}  	  	
+    {% endfor %}
+  {% endif %}
+
+  {% if q.quest_type == 3 %}
+	<input type="text" name="Radio" size="10" value={{q.quest_answer}}><br><br><BR><BR><br><br><BR><BR>
+  {% endif %}
+  
+  {% if q.quest_type == 4 %}
+	<input type="text" name="Radio" size="20" value={{q.quest_answer}}><br><br><BR><BR><br><br><BR><BR>
+  {% endif %}
+
+  {% if q.quest_type == 5 %}
+	<input type="text" name="Radio" size="200" value={{q.quest_answer}}><br><br><BR><BR><br><br><BR><BR>
+  {% endif %}
+  
+{% endfor %}
+</ol>
+
+
+<INPUT TYPE=SUBMIT NAME=quest VALUE="Ответить на вопрос" id="herobutton">
+
+<BR>
+<BR>
+<BR>
+<BR>
+
+
+
+
+<div>
+			
+<span class="current">
+    {% for i in quest_list.paginator.page_range %}
+	
+        {% if i == 1 %}	
+            {% if i != page %}		
+                {% if is_ans.0 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.0 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}	
+		
+        {% if i == 2 %}	
+            {% if i != page %}		
+                {% if is_ans.1 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.1 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}			
+		
+        {% if i == 3 %}	
+            {% if i != page %}		
+                {% if is_ans.2 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.2 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+
+        {% if i == 4 %}	
+            {% if i != page %}		
+                {% if is_ans.3 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.3 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}
+
+        {% if i == 5 %}	
+            {% if i != page %}		
+                {% if is_ans.4 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.4 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}
+		
+        {% if i == 6 %}	
+            {% if i != page %}		
+                {% if is_ans.5 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.5 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 7 %}	
+            {% if i != page %}		
+                {% if is_ans.6 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.6 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 8 %}	
+            {% if i != page %}		
+                {% if is_ans.7 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.7 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 9 %}	
+            {% if i != page %}		
+                {% if is_ans.8 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.8 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 10 %}	
+            {% if i != page %}		
+                {% if is_ans.9 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.9 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+
+        {% if i == 11 %}	
+            {% if i != page %}		
+                {% if is_ans.10 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.10 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}	
+		
+        {% if i == 12 %}	
+            {% if i != page %}		
+                {% if is_ans.11 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.11 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}			
+		
+        {% if i == 13 %}	
+            {% if i != page %}		
+                {% if is_ans.12 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.12 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+
+        {% if i == 14 %}	
+            {% if i != page %}		
+                {% if is_ans.13 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.13 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}
+
+        {% if i == 15 %}	
+            {% if i != page %}		
+                {% if is_ans.14 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.14 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}
+		
+        {% if i == 16 %}	
+            {% if i != page %}		
+                {% if is_ans.15 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.15 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 17 %}	
+            {% if i != page %}		
+                {% if is_ans.16 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.16 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 18 %}	
+            {% if i != page %}		
+                {% if is_ans.17 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.17 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 19 %}	
+            {% if i != page %}		
+                {% if is_ans.18 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.18 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 20 %}	
+            {% if i != page %}		
+                {% if is_ans.19 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.19 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 21 %}	
+            {% if i != page %}		
+                {% if is_ans.20 == 1 %}			
+                <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.20 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}
+		
+        {% if i == 22 %}	
+            {% if i != page %}		
+                {% if is_ans.21 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.21 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 23 %}	
+            {% if i != page %}		
+                {% if is_ans.22 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.22 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+        
+        {% if i == 24 %}	
+            {% if i != page %}		
+                {% if is_ans.23 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.23 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 25 %}	
+            {% if i != page %}		
+                {% if is_ans.24 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.24 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}
+		
+        {% if i == 26 %}	
+            {% if i != page %}		
+                {% if is_ans.25 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.25 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 27 %}	
+            {% if i != page %}		
+                {% if is_ans.26 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.26 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 28 %}	
+            {% if i != page %}		
+                {% if is_ans.27 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.27 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 29 %}	
+            {% if i != page %}		
+                {% if is_ans.28 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.28 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 30 %}	
+            {% if i != page %}		
+                {% if is_ans.29 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.29 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 31 %}	
+            {% if i != page %}		
+                {% if is_ans.30 == 1 %}			
+                <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.30 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}
+		
+        {% if i == 32 %}	
+            {% if i != page %}		
+                {% if is_ans.31 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.31 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 33 %}	
+            {% if i != page %}		
+                {% if is_ans.32 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.32 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+        
+        {% if i == 34 %}	
+            {% if i != page %}		
+                {% if is_ans.33 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.33 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 35 %}	
+            {% if i != page %}		
+                {% if is_ans.34 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.34 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}
+		
+        {% if i == 36 %}	
+            {% if i != page %}		
+                {% if is_ans.35 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.35 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 37 %}	
+            {% if i != page %}		
+                {% if is_ans.36 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.36 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 38 %}	
+            {% if i != page %}		
+                {% if is_ans.37 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.37 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 39 %}	
+            {% if i != page %}		
+                {% if is_ans.38 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.38 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}		
+		
+        {% if i == 40 %}	
+            {% if i != page %}		
+                {% if is_ans.39 == 1 %}			
+                    <span class="Page_B">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+    			{% else %}	
+                    <span class="Page_G">
+                    <a href="?page={{ i }}{% if page_size %}&page_size={{ page_size }}{% endif %}">{{ i }}</a>
+                    </span>
+                {% endif %}						
+			{% else %}		
+                {% if is_ans.39 == 1 %}
+				    <span class="Page_R"> {{i}} </span>
+    			{% else %}	
+				    <span class="Page_Y"> {{i}} </span>
+                {% endif %}									
+            {% endif %}				
+        {% endif %}			
+    {% endfor %}  			
+</span>
+
+</div>
+{#</FORM>#}
+{#<form method="get">#}
+<div>
+    <INPUT TYPE=SUBMIT NAME=quest VALUE="Завершить тест" id="endbutton">
+</div>
+</form>
+
+<BR>
+<BR>
+
+
+</FORM>
+{% endblock %}
+

@@ -1,0 +1,92 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon/icomoon.eot?srf3rx");
+  src: url("../fonts/icomoon/icomoon.eot?srf3rx#iefix") format("embedded-opentype"), url("../fonts/icomoon/icomoon.ttf?srf3rx") format("truetype"), url("../fonts/icomoon/icomoon.woff?srf3rx") format("woff"), url("../fonts/icomoon/icomoon.svg?srf3rx#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+
+#herobutton{
+color: #fff;
+background: #429FFD;
+padding: 8px 15px;
+display: -moz-inline-stack;
+display: inline-block;
+zoom: 1;
+*display: inline;
+-webkit-transition: 0.3s;
+-o-transition: 0.3s;
+transition: 0.3s;
+              -webkit-border-radius: 100px;
+              -moz-border-radius: 100px;
+              -ms-border-radius: 100px;
+              border-radius: 100px;
+}
+#heroButton:hover{
+  -webkit-box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);
+          -moz-box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);
+}
+
+#heroButton:active {
+  color: #1E6030 !important;
+        position: relative;
+}
+
+.Page_G, .Page_B, .Page_Y, .Page_R {
+ display: inline-block;
+ font-size: 20px;
+ color: white;
+ height: 50px;
+ line-height: 50px;
+ display: inline-block;
+ padding: 0 20px;
+ -webkit-transform: skew(-15deg);
+ -moz-transform: skew(-15deg);
+ transform: skew(-15deg);
+ background-color: #363636;
+ background-image: -webkit-linear-gradient(top, #3b3b3b, #323232);
+ background-image: linear-gradient(to bottom, #3b3b3b, #323232);
+ background-repeat: repeat-x;
+ margin-right: -1px;
+ text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.8);
+}
+.Page_B:first-child:before {
+    content: '';
+ position: absolute;
+ display: block;
+ top: 0px;
+ left: -8px;
+ width: 15px;
+ height: 50px;
+ -webkit-transform: skew(15deg);
+ border-radius: 3px 0 0 3px;
+ background-color: #363636;
+ background-image: -webkit-linear-gradient(top, #3b3b3b, #323232);
+ background-image: linear-gradient(to bottom, #3b3b3b, #323232);
+ background-repeat: repeat-x;
+}
+.Page_Y:last-child:after {
+
+    left: auto;
+ right: -8px;
+ border-radius: 0 3px 3px 0;
+}
+
+#endbutton{
+color: #fff;
+background: #f9485a;
+padding: 8px 15px;
+display: -moz-inline-stack;
+display: inline-block;
+zoom: 1;
+*display: inline;
+-webkit-transition: 0.3s;
+-o-transition: 0.3s;
+transition: 0.3s;
+              -webkit-border-radius: 100px;
+              -moz-border-radius: 100px;
+              -ms-border-radius: 100px;
+              border-radius: 100px;
+    float: right;
+}

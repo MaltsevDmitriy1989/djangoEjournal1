@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+
+<html lang="en">
+<style>
+ .cyrilic { 
+  list-style-type: none; /* Прячем исходную нумерацию */
+ }
+ .cyrilic li::before {
+  margin-right: 5px; /* Расстояние от буквы до текста */
+  width: 1em; /* Ширина */
+  text-align: right; /* Выравнивание по правому краю */
+  display: inline-block; /* Строчно-блочный элемент */
+ }
+ .cyrilic li:nth-child(1)::before { content: 'А)'; }
+ .cyrilic li:nth-child(2)::before { content: 'Б)'; }
+ .cyrilic li:nth-child(3)::before { content: 'В)'; }
+ .cyrilic li:nth-child(4)::before { content: 'Г)'; }
+ .cyrilic li:nth-child(5)::before { content: 'Д)'; }
+ .cyrilic li:nth-child(6)::before { content: 'Е)'; }
+ .cyrilic li:nth-child(7)::before { content: 'Ж)'; }
+ .cyrilic li:nth-child(8)::before { content: 'И)'; }
+ .cyrilic li:nth-child(9)::before { content: 'К)'; }
+ .cyrilic li:nth-child(10)::before { content: 'Л)'; }
+ .cyrilic li:nth-child(10)::before { content: 'М)'; }
+ .cyrilic li:nth-child(10)::before { content: 'Н)'; }
+ .cyrilic li:nth-child(10)::before { content: 'П)'; }
+ .cyrilic li:nth-child(10)::before { content: 'Р)'; }   
+</style>	
+<head>
+</head>
+<body>
+
+<h2>{{ plan.fam }}   {{ plan.imya }}   {{ plan.otch }},   {{ plan.group_nam }},   {{ plan.pred_nam }}</h2>
+<h3>Результаты тестирования</title></h3>
+
+<form action="." method="POST">
+
+{% for res in res_list %}
+<h3>Итоговая оценка за тест - {{ res.mark }} баллов</h3>
+
+{% if res.mark < 18 %}
+    <h2>Вы плохо знаете философию!</h2>
+{% else %}
+  {% if res.mark < 27 %}
+    <h2>Вы знаете философию на троечку...</h2>
+  {% else %}  
+    {% if res.mark < 35 %}
+      <h2>Вы хорошо знаете философию!</h2>
+    {% else %}
+      <h2>Вы отлично знаете философию!</h2>
+    {% endif %}					
+  {% endif %}				  
+{% endif %}		
+<BR>
+
+{% ifequal d 1 %}
+  <h3> На 22 вопроса Вы дали 1 правильный ответ </h3>
+{% else %}
+  {% if d < 5 %}
+    <h3> На 22 вопроса Вы дали {{ d }} правильных ответа </h3>
+  {% else %}	
+    {% if d = 21 %}
+      <h3> На 22 вопроса Вы дали 21 правильный ответ </h3>	
+    {% else %}	
+      {% if d > 21 %}
+        <h3> На 22 вопроса Вы дали {{ d }} правильных ответа </h3>
+      {% else %}		
+        <h3> На 22 вопроса Вы дали {{ d }} правильных ответов </h3>  
+	  {% endif %}	
+    {% endif %}	
+  {% endif %}	
+{% endifequal %}
+
+{% endfor %}
+
+
+
+<h1><INPUT style="width:300x;height:75px;font-size:200%" TYPE=SUBMIT NAME="output" VALUE="Завершить тестирование"></h1>
+
+
+</body>
+</html>
+
+

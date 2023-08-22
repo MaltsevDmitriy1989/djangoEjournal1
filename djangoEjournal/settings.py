@@ -9,26 +9,43 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import environ
+import os
 from pathlib import Path
 
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False),
+    SECRET_KEY=(str),
+    DOMAIN_NAME=(str),
+    REDIS_HOST=(str),
+    REDIS_PORT=(str),
+    DATABASE_NAME=(str),
+    DATABASE_USER=(str),
+    DATABASE_PASSWORD=(str),
+    DATABASE_HOST=(str),
+    DATABASE_PORT=(str),
+
+)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mbx0x2%iv*xgs)fdtd17sf9f)vmg_3l(ts0%10z2^scgdl0_=o'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
-DOMAIN_NAME = 'http://127.0.0.1:8000/'
+DOMAIN_NAME = env('DOMAIN_NAME')
 
 # Application definition
 
@@ -39,9 +56,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'quest.apps.QuestConfig',
     'mediacontent',
     'users',
+    'debug_toolbar',
 
 ]
 
@@ -53,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'djangoEjournal.urls'
@@ -76,7 +96,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djangoEjournal.wsgi.application'
 
-
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost',
+]
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -91,19 +114,35 @@ WSGI_APPLICATION = 'djangoEjournal.wsgi.application'
 #     }
 # }
 
+REDIS_HOST=env('REDIS_HOST')
+REDIS_PORT=env('REDIS_PORT')
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
+    },
+    'exam': {
         'NAME': 'exam',
-        'USER': 'root',
-        'PASSWORD': '123q',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

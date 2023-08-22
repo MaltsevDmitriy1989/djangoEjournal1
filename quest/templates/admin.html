@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ru">
+<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+<head>
+    <title>anketa_аdmin</title>
+    <script type="text/javascript" src="/media/js/jquery.js"></script>		
+</head>
+<body>
+<script type="text/javascript">
+function destroy() {
+        if (confirm("Вы действительно хотите удалить администратора?"))
+        {
+
+                return true;
+        }
+
+        return false;
+}
+</script>
+<h1>{{fam}}  {{imya}}  {{otch}}</h1>
+<form action="" method="POST">
+{% csrf_token %}
+<BR>	
+{% comment %}			
+{% endcomment %}	
+<BR>	
+<h1>Преподаватели</h1>	
+<table border="2">
+    <tr>
+		<td>Номер п.п.</td>			
+		<td>Фамилия</td>
+		<td>Имя</td>
+		<td>Отчество</td>
+		<td>Изменить</td>
+		<td>Удалить</td>		
+	</tr>
+	{% for i in prepod %}
+    <tr>
+	    <td>{{ i.prepod_num }}</td>
+		<td>{{ i.fam }}</td>
+		<td>{{ i.imya }}</td>
+		<td>{{ i.otch }}</td>
+		<td align="Center"><INPUT TYPE=SUBMIT NAME="edit_prepod" VALUE="{{ i.prepod_num }}"></td>					
+		<td align="Center"><INPUT TYPE=SUBMIT NAME="del_prepod" VALUE="{{ i.prepod_num }}" onclick="return destroy();"></td>							
+	</tr>
+	{% endfor %}
+</table>
+<p><INPUT TYPE=SUBMIT NAME=insert VALUE="Добавить"></p>	
+<BR>	
+
+<BR>	
+<h1>Выбор действия</h1>	
+<table width = 100% border="0">
+  <tr>
+    <td width = "12.5%"><INPUT TYPE=SUBMIT NAME=fak VALUE="Факультеты"></td>			  
+    <td width = "12.5%"><INPUT TYPE=SUBMIT NAME=kaf VALUE="Кафедры"></td>			
+    <td width = "12.5%"><INPUT TYPE=SUBMIT NAME=op VALUE="Образовательные программы"></td>
+    <td width = "12.5%"><INPUT TYPE=SUBMIT NAME=usg VALUE="Студенческие группы"></td>	
+    <td width = "12.5%"><INPUT TYPE=SUBMIT NAME=plantest VALUE="План тестирования"></td>	
+    <td width = "12.5%"><INPUT TYPE=SUBMIT NAME=password VALUE="Пароли"></td>	
+  </tr>
+{% comment %}
+  {% for i in prepod %}
+  <tr>
+    <td>{{ i.prepod_num }}</td>
+    <td>{{ i.fam }}</td>
+    <td>{{ i.imya }}</td>
+    <td>{{ i.otch }}</td>
+  </tr>
+  {% endfor %}
+{% endcomment %}  
+</table>
+
+
+
+<BR>	
+<p><INPUT TYPE=SUBMIT NAME=output VALUE="Выйти"></p>		
+{% comment %}
+{% endcomment %}	
+</form>
+</body>
+</html>

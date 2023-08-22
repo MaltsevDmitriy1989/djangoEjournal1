@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ru">
+<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+
+<head>
+    <title>anketa_аdmin_fak</title>
+    <script type="text/javascript" src="/media/js/jquery.js"></script>			
+</head>
+<body>
+<script type="text/javascript">
+function destroy() {
+        if (confirm("Вы действительно хотите удалить факультет?"))
+        {
+
+                return true;
+        }
+
+        return false;
+}
+</script>
+<h1>{{fam}}  {{imya}}  {{otch}}</h1>
+<h1>Администратор</h1>
+<form action="" method="POST">
+{% csrf_token %}
+<BR>	
+<h1>Назначенные пароли</h1>	
+<table border="2">
+  <tr>
+    <td>Номер пароля</td>
+    <td>Номер плана</td>
+    <td>Фамилия</td>
+    <td>Имя</td>
+    <td>Отчество</td>
+    <td>Группа</td>
+    <td>Предмет</td>
+    <td>Номер БТЗ</td>
+    <td>ID студента</td>
+    <td>Пароль</td>
+    <td>Попытка</td>
+    <td>Изменить</td>	
+    <td>Удалить</td>		
+  </tr>
+{% comment %}
+{% endcomment %}  
+  {% for i in parol %}
+  <tr>
+    <td>{{ i.parol_num }}</td>
+    <td>{{ i.plan_num }}</td>
+    <td>{{ i.fam }}</td>
+    <td>{{ i.imya }}</td>
+    <td>{{ i.otch }}</td>
+    <td>{{ i.group_nam }}</td>
+    <td>{{ i.pred_nam }}</td>
+    <td>{{ i.baza_num }}</td>
+    <td>{{ i.stud_num }}</td>
+    <td>{{ i.password }}</td>
+    <td>{{ i.trying }}</td>
+    <td align="Center"><INPUT TYPE=SUBMIT NAME="edit_parol" VALUE="{{ i.parol_num }}"></td>						
+    <td align="Center"><INPUT TYPE=SUBMIT NAME="del_parol" VALUE="{{ i.parol_num }}" onclick="return destroy();"></td>							
+  </tr>
+  {% endfor %}
+</table>
+<BR>	
+<p><INPUT TYPE=SUBMIT NAME=insert_parol VALUE="Добавить пароль"></p>	
+<BR>
+<BR>
+<p><INPUT TYPE=SUBMIT NAME=output VALUE="Выйти"></p>		
+</form>
+</body>
+</html>

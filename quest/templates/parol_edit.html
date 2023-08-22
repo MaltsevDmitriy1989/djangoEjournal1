@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ru">
+<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+
+<head>
+    <title>anketa_fak_edit</title>
+</head>
+<body>
+<h1>Изменение данных пароля</h1>
+{{ fak_namp }}
+<form action="" method="POST">
+{% csrf_token %}
+{% comment %}			
+    <p><INPUT TYPE=SUBMIT NAME=seache VALUE="Найти"></p>
+{% endcomment %}	
+    <h3>Измените необходимые поля.</h3>	
+  	<table border="2">
+		    <tr>
+				<td>Номер плана</td>
+				<td>Пароль</td>
+			</tr>		
+		    <tr>
+				<td><input type="text" name="plan_num" size="10" style="font-size: 25px;" VALUE="{{ plan_num }}"></td>
+				<td><input type="text" name="password" size="50"  style="font-size: 25px;" VALUE="{{ password }}"></td>
+			</tr>
+	</table>
+    <BR>	
+    <BR>
+    <p><INPUT TYPE=SUBMIT NAME=edit_parol VALUE="Изменить"></p>	
+    <p><INPUT TYPE=SUBMIT NAME=output VALUE="Отменить"></p>		
+</form>
+</body>
+</html>
